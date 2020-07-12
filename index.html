@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>Checkout</title>
+
+    <style>
+         :root {
+            --primary: #F2994A;
+            --gray: #828282;
+            --white: #ffffff;
+            --light-gray: #F2F2F2;
+            --gray-5: #E0E0E0;
+            --gray-4: #BDBDBD
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box
+        }
+        
+        body {
+            position: relative;
+            font-family: Montserrat, sans-serif
+        }
+        
+        .wrapper {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between
+        }
+        
+        .side-bar .content {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 30px
+        }
+        
+        .form-group {
+            position: relative
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            font-family: Montserrat, sans-serif;
+            border: 1px solid var(--gray);
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            border-radius: 12px;
+            outline: 0
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border: 1px solid var(--primary)
+        }
+        
+        .form-row {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-right: -15px;
+            margin-left: -15px
+        }
+        
+        .form-row .form-group {
+            padding-right: 15px;
+            padding-left: 15px;
+            width: 50%
+        }
+        
+        .form-group i {
+            position: absolute;
+            top: 43px;
+            left: 10px;
+            color: var(--gray)
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: inline-block
+        }
+        
+        .button-group {
+            text-align: right
+        }
+        
+        .button-group .btn {
+            width: 165px;
+            height: 55px;
+            text-align: center;
+            background: var(--primary);
+            border-radius: 12px;
+            outline: 0;
+            font-family: Montserrat, sans-serif;
+            font-size: 16px;
+            color: var(--white);
+            border: 1px solid transparent;
+            cursor: pointer;
+            -webkit-transition: all .3s ease-in-out;
+            -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out
+        }
+        
+        .button-group .btn:hover {
+            border: 1px solid var(--primary);
+            background: var(--white);
+            color: var(--primary)
+        }
+        
+        .checkbox input[type=checkbox] {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            position: absolute
+        }
+        
+        .checkbox label {
+            padding-left: 30px
+        }
+        
+        .product-item {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 30px
+        }
+        
+        .product-item .product-img {
+            max-width: 150px;
+            border-radius: 12px;
+            overflow: hidden;
+            display: block
+        }
+        
+        .product-item .product-img img {
+            width: 100%;
+            -webkit-transition: all .3s ease-in-out;
+            -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+            display: block
+        }
+        
+        .product-item .product-img:hover img {
+            -webkit-transform: scale(1.1) rotate(5deg);
+            -ms-transform: scale(1.1) rotate(5deg);
+            transform: scale(1.1) rotate(5deg)
+        }
+        
+        .product-item .product-name--action {
+            margin-left: 20px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between
+        }
+        
+        .product-item .product-name {
+            margin-bottom: 8px
+        }
+        
+        .product-item .product-price .new-price {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            color: var(--primary)
+        }
+        
+        .product-item .product-price .old-price {
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 15px;
+            -webkit-text-decoration-line: line-through;
+            text-decoration-line: line-through;
+            margin-left: 10px
+        }
+        
+        .product-action {
+            position: relative;
+            width: 135px
+        }
+        
+        .product-action input {
+            width: 100%;
+            height: 52px;
+            border: 1px solid var(--gray);
+            border-radius: 12px;
+            background: 0 0;
+            padding: 0 30px;
+            font-size: 16px;
+            line-height: 20px;
+            font-family: Montserrat, sans-serif;
+            outline: 0;
+            text-align: center
+        }
+        
+        .product-action input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0
+        }
+        
+        .product-action .btn-quantity {
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 0;
+            background: var(--gray-5);
+            cursor: pointer;
+            border-radius: 4px
+        }
+        
+        .product-action .btn-quantity.decrement {
+            left: 12px
+        }
+        
+        .product-action .btn-quantity.increment {
+            right: 12px
+        }
+        
+        .product-total {
+            margin-top: 90px
+        }
+        
+        .product-total>div {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-top: 1px solid var(--gray-4)
+        }
+        
+        .product-total label {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 22px
+        }
+        
+        .product-total span {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 17px
+        }
+        
+        .my-name {
+            display: block;
+            width: 100%;
+            position: absolute;
+            bottom: 1%;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 17px;
+            color: #a9a9a9
+        }
+        
+        @media (min-width:768px) {
+            body {
+                padding: 65px 0
+            }
+            .container {
+                margin: 0 240px
+            }
+            h1 {
+                font-weight: 600;
+                font-size: 36px;
+                line-height: 44px
+            }
+            .wrapper {
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: row;
+                flex-direction: row
+            }
+            .main {
+                width: 50%
+            }
+            .side-bar {
+                width: 40%;
+                margin-top: 50px
+            }
+            .section {
+                margin-top: 50px
+            }
+            .section .section-title {
+                font-size: 18px;
+                line-height: 22px;
+                margin-bottom: 15px
+            }
+            .form-group {
+                margin-bottom: 20px
+            }
+            .form-group label {
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 15px;
+                margin-bottom: 5px;
+                display: inline-block
+            }
+            .form-group input,
+            .form-group select {
+                height: 56px;
+                padding: 0 20px 0 40px;
+                outline: 0;
+                font-size: 16px
+            }
+            .form-row .form-group i {
+                left: 25px
+            }
+        }
+        
+        @media (max-width:767px) {
+            body {
+                padding: 30px 0 60px
+            }
+            .container {
+                margin: 0 20px
+            }
+            h1 {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 29px
+            }
+            .main .section {
+                margin-top: 40px
+            }
+            .wrapper {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: reverse;
+                -ms-flex-direction: column-reverse;
+                flex-direction: column-reverse
+            }
+            .side-bar {
+                margin-top: 20px
+            }
+            .form-group {
+                margin-bottom: 15px
+            }
+            .form-group input,
+            .form-group select {
+                height: 40px;
+                padding: 0 40px
+            }
+            .form-group label {
+                font-size: 10px;
+                line-height: 12px
+            }
+            .form-group i {
+                top: 37px;
+                left: 15px;
+                font-size: 14px
+            }
+            .form-row .form-group i {
+                left: 30px
+            }
+            .checkbox input[type=checkbox] {
+                padding: 0
+            }
+            .product-item .product-img {
+                width: 130px
+            }
+            .product-item .product-name {
+                font-size: 14px
+            }
+            .product-item .product-price .new-price {
+                font-size: 14px
+            }
+            .product-item .product-price .old-price {
+                font-size: 12px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        <div class="wrapper">
+            <div class="main">
+                <div class="section">
+                    <h3 class="section-title">Contact infomation</h3>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label for="checkout[email]">E-mail</label>
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="checkout[email]" placeholder="Enter your email...">
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout[phone]">Phone</label>
+                            <i class="fas fa-phone-alt"></i>
+                            <input type="text" id="checkout[phone]" placeholder="Enter your phone...">
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3 class="section-title">Shipping address</h3>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label for="checkout[name]">Full name</label>
+                            <i class="fas fa-user-circle"></i>
+                            <input type="text" id="checkout[name]" placeholder="Your name..." value="Rodney Cotton">
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout[address]">Address</label>
+                            <i class="fas fa-home-lg-alt"></i>
+                            <input type="text" id="checkout[address]" placeholder="Your address...">
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout[city]">City</label>
+                            <i class="fas fa-city"></i>
+                            <input type="text" id="checkout[city]" placeholder="Your city...">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkout[country]">Country</label>
+                                <i class="fas fa-globe-asia"></i>
+                                <select name="" id="checkout[country]">
+                                    <option value="1">Vietnam</option>
+                                    <option value="2">China</option>
+                                    <option value="3">Japan</option>
+                                    <option value="4">Korea</option>
+                                    <option value="5">USA</option>
+                                </select>
+                                <!-- <input type="text" id="checkout[country]" placeholder="Your country..."> -->
+                            </div>
+                            <div class="form-group">
+                                <label for="checkout[postalCode]">Postal code</label>
+                                <i class="fas fa-mail-bulk"></i>
+                                <input type="text" id="checkout[postalCode]" placeholder="Your postal code...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="checkout[save]">
+                    <label for="checkout[save]">Save this information for next time</label>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn">Continue</button>
+                </div>
+            </div>
+            <div class="side-bar">
+                <div class="content">
+                    <div class="product-item">
+                        <a href="javascript:void(0);" class="product-img">
+                            <img src="./images/photo1.png" alt="photo1">
+                        </a>
+                        <div class="product-name--action">
+                            <div class="name-price">
+                                <h4 class="product-name">Vintage Backbag</h4>
+                                <div class="product-price">
+                                    <span class="new-price">$54.99</span>
+                                    <span class="old-price">$94.99</span>
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <button class="btn-quantity decrement"><i class="fal fa-minus"></i></button>
+                                <input type="number" class="product-quantity" value="1">
+                                <button class="btn-quantity increment"><i class="fal fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <a href="javascript:void(0);" class="product-img">
+                            <img src="./images/photo2.png" alt="photo2">
+                        </a>
+                        <div class="product-name--action">
+                            <div class="name-price">
+                                <h4 class="product-name">Levi Shoes</h4>
+                                <div class="product-price">
+                                    <span class="new-price">$74.99</span>
+                                    <span class="old-price">$124.99</span>
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <button class="btn-quantity decrement"><i class="fal fa-minus"></i></button>
+                                <input type="number" class="product-quantity" value="1">
+                                <button class="btn-quantity increment"><i class="fal fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-total">
+                        <div class="shipping">
+                            <label>Shipping</label>
+                            <span>$19</span>
+                        </div>
+                        <div class="total">
+                            <label>Total</label>
+                            <span>$148.98</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="my-name">Linh Nguyen @ DevChallenges.io</p>
+</body>
+
+</html>
